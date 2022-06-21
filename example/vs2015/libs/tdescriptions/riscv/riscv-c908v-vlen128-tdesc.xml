@@ -104,7 +104,7 @@
 	<reg name="mip"       bitsize="64" regnum="0x385" type="int"/>
     <!-- M-mode Memory Protect -->
 	<reg name="pmpcfg0"   bitsize="64" regnum="0x3e1" type="int"/>
-	<reg name="pmpcfg1"   bitsize="64" regnum="0x3e2" type="int"/>
+	<reg name="pmpcfg2"   bitsize="64" regnum="0x3e3" type="int"/>
 	<reg name="pmpaddr0"  bitsize="64" regnum="0x3f1" type="int"/>
 	<reg name="pmpaddr1"  bitsize="64" regnum="0x3f2" type="int"/>
 	<reg name="pmpaddr2"  bitsize="64" regnum="0x3f3" type="int"/>
