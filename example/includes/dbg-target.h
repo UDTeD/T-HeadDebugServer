@@ -79,11 +79,12 @@
 #define DM_PCSAMPLING_64_CLK   282
 
 #define HAD_CDI_J5_V  0xFFFFFFFF
-#define HAD_CDI_J5    0
-#define HAD_CDI_J2    1
+#define HAD_CDI_J5    0  // Standard JTAG 5
+#define HAD_CDI_J2    1  // CSKY JTAG 2
+#define HAD_CDI_cJ2   2  // cJTAG 2 wire, default OSCAN1 format
 #define HAD_CDI_NULL  0xff
 
-#define MAX_CPU_COUNT 32
+#define MAX_CPU_COUNT 64
 
 #ifdef __cplusplus
 extern "C" {
@@ -133,15 +134,16 @@ enum target_state
 /*----- The reason of debug -----*/
 enum target_debug_reason
 {
-    DBG_REASON_DBGRQ = 0,   ///< Debug request, Such as CTRL-C in gdb
-    DBG_REASON_BREAKPOINT,  ///< Caused by breakpoint
-    DBG_REASON_WATCHPOINT,  ///< Caused by watchpoint
-    DBG_REASON_SINGLESTEP,  ///< Caused by singleStep
-    DBG_REASON_RUNNING,     ///< Target is Running, not in debug mode
-    DBG_REASON_FILEIO,      ///< Caused by semihosting
-    DBG_REASON_PRO,         ///< Caused by other cores
-	DBG_REASON_SIMBP,       ///< Caused by a flash simulate bp
-    DBG_REASON_UNDEFINED,   ///< Undefined
+    DBG_REASON_DBGRQ = 0,     ///< Debug request, Such as CTRL-C in gdb
+    DBG_REASON_SWBREAKPOINT,    ///< Caused by breakpoint
+    DBG_REASON_HWBREAKPOINT,  ///< Caused by breakpoint
+    DBG_REASON_WATCHPOINT,    ///< Caused by watchpoint
+    DBG_REASON_SINGLESTEP,    ///< Caused by singleStep
+    DBG_REASON_RUNNING,       ///< Target is Running, not in debug mode
+    DBG_REASON_FILEIO,        ///< Caused by semihosting
+    DBG_REASON_PRO,           ///< Caused by other cores
+    DBG_REASON_SIMBP,         ///< Caused by a flash simulate bp
+    DBG_REASON_UNDEFINED,     ///< Undefined
 };
 
 /*----- The status of debug communication -----*/

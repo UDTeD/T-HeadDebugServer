@@ -32,6 +32,7 @@ enum LINK_ERROR {
 	LINK_ERROR_NO_DEVICE = 0x80000001, ///< No device
 	LINK_ERROR_IO = 0x80000002,        ///< Error IO
 	LINK_ERROR_UNSUPPORT = 0x80000003, ///< Unsupport
+	LINK_ERROR_PARAM = 0x80000004,     ///< Error paramaters
 
 	LINK_ERROR_UNKNOWN = 0x80000fff,   ///< Unknown error
 };
@@ -50,6 +51,7 @@ enum LINK_CONFIG_KEY
 	LINK_CONFIG_CDI,             ///< Set SWD or JTAG
 #define LINK_CONFIG_CDI_VALUE_JTAG       0
 #define LINK_CONFIG_CDI_VALUE_SWD        1
+#define LINK_CONFIG_CDI_VALUE_cJTAG      2
 
 	LINK_CONFIG_TRESET,          ///< Do Treset
 
@@ -100,6 +102,13 @@ enum LINK_CONFIG_KEY
 	LINK_CONFIG_SET_XLEN,                ///< Set XLEN for RVDM
 
 	LINK_CONFIG_SET_MEM_ACCESS_MODE,     ///< Set Mem Access Mode for RVDM
+
+	LINK_CONFIG_GET_CDI,                 ///< Get current CDI Type
+
+#define CKLINK_REG8_GET_IDLE_DELAY(cklink_reg8)      ((((cklink_reg8) & 0x7)) | ((((cklink_reg8) >> 23) & 0x1f) << 3))
+	LINK_CONFIG_INCREASE_IDLE_DELAY,     ///< Increase TCLK stayed in Run Test/Idle
+
+	LINK_CONFIG_ACTIVE_OSCAN1,           ///< Do active oscan1 for cJTAG
 };
 
 
@@ -291,6 +300,19 @@ int  link_get_device_list_with_vid_pid (U16 vid, U16 pid, struct link_dev *dev, 
 \return       The name of link.
 */
 const char * THE_NAME_OF_LINK (void);
+
+/**
+\brief        Only for cJTAG, write escape.
+\return       0 on success, errcode in error
+*/
+const char * link_write_escape(void *handle, int count);
+
+/**
+\brief        Only for cJTAG, write tms.
+\return       0 on success, errcode in error
+*/
+CKLINK_API int
+link_write_tms (struct cklink *link, uint32_t value, int nbit);
 
 #endif
 

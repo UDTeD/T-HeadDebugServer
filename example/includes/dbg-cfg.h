@@ -197,6 +197,8 @@ struct arch_cfg {
 	unsigned int abscmd_busy_delay;
 	/* Enter debug time. */
 	unsigned int enter_debug_time;
+	/* Try again times when DMI.op got busy. */
+	unsigned int dmi_busy_adjust_times;
 };
 
 struct socket_cfg
