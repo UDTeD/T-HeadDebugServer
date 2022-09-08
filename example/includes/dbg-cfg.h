@@ -135,6 +135,10 @@ struct misc_cfg {
 	int (*errout) (const char *);
 	/* Don't check target while connectint. */
 	unsigned char return_after_ice_connection;
+	/* Read sd_info in connection sequence. */
+	int print_sd_info;
+	int print_sd_info_addr;
+	int print_sd_info_size;
 };
 
 struct link_cfg
