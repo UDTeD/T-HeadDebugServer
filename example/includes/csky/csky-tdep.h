@@ -79,7 +79,7 @@ struct cpu_csky
 	unsigned int id_version;
 	unsigned int revision;
     char *cpu_info;
-	char cpu_name[16];
+	char cpu_name[20];
     unsigned int cpid[10];
     enum  target_endian endian; /* Target endian. */
     enum target_state state;    /* Target state.  */
